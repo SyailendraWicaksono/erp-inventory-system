@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="dK6FCh5RgjrQZ07c5VTb">
+    <mxGraphModel dx="1084" dy="555" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-11" edge="1" parent="1" source="aNz4MokvtI2GeHTrUWWp-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="aNz4MokvtI2GeHTrUWWp-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-12" connectable="0" parent="aNz4MokvtI2GeHTrUWWp-11" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Order Information" vertex="1">
+          <mxGeometry relative="1" x="-0.16" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Customer" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="ERP Mobile System" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-8" edge="1" parent="1" source="aNz4MokvtI2GeHTrUWWp-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="aNz4MokvtI2GeHTrUWWp-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Owner" vertex="1">
+          <mxGeometry height="60" width="120" x="50" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-4" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="120" width="120" x="330" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-6" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="aNz4MokvtI2GeHTrUWWp-3" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="110" y="460" as="sourcePoint" />
+            <mxPoint x="130" y="450" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-7" connectable="0" parent="aNz4MokvtI2GeHTrUWWp-6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Operational Data" vertex="1">
+          <mxGeometry relative="1" x="-0.08" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-9" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="259.5" y="320" as="sourcePoint" />
+            <mxPoint x="259.5" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aNz4MokvtI2GeHTrUWWp-10" connectable="0" parent="aNz4MokvtI2GeHTrUWWp-9" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Order Status" vertex="1">
+          <mxGeometry relative="1" x="-0.08" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

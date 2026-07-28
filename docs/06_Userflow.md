@@ -11,7 +11,7 @@ Dokumen ini menjelaskan alur interaksi pengguna dengan sistem ERP Mobile. User F
 </p>
 
 <p align="center">
-<b>Gambar 4.0.</b> Current Business Process (TO-BE)
+<b>Gambar 4.1.</b> Customer Flow
 </p>
 
 | Step | Activity                                    |
@@ -33,7 +33,7 @@ Dokumen ini menjelaskan alur interaksi pengguna dengan sistem ERP Mobile. User F
 </p>
 
 <p align="center">
-<b>Gambar 4.0.</b> Current Business Process (TO-BE)
+<b>Gambar 4.2.</b> Owner Flow
 </p>
 
 | Step | Activity                                     |
