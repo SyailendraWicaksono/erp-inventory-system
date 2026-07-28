@@ -38,6 +38,32 @@ ERP Mobile berperan sebagai sistem yang membantu owner dalam mengelola seluruh p
 
 ## 4. TO-BE Business Process Diagram (BPMN)
 
+<p align="center">
+  <img src="../assets/diagrams/BusinessProcess/TO-BE 2 .drawio.png" width="800">
+</p>
+
+<p align="center">
+<b>Gambar 4.0.</b> Current Business Process (TO-BE)
+</p>
+
 ## 5. Process Improvements
 
+| No | AS-IS                                                             | TO-BE                                                                                   |
+| -- | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| 1  | Pemesanan dicatat secara manual oleh owner.                       | Customer melakukan pemesanan melalui Guest Ordering dan data langsung tersimpan di ERP. |
+| 2  | Owner harus mengingat atau mencatat status pesanan secara manual. | Status pesanan dikelola secara otomatis oleh ERP.                                       |
+| 3  | Pemeriksaan stok dilakukan secara manual.                         | ERP membantu pengelolaan inventori dan status stok.                                     |
+| 4  | Informasi pesanan tersebar di chat dan catatan.                   | Seluruh data pesanan tersimpan terpusat di ERP.                                         |
+| 5  | Jadwal produksi ditentukan tanpa pencatatan yang terstruktur.     | Owner menyusun jadwal produksi berdasarkan data pesanan di ERP.                         |
+| 6  | Pembayaran dicatat secara manual di luar sistem.                  | Pembayaran dicatat dan statusnya diperbarui melalui ERP.                                |
+
 ## 6. Business Process Assumptions
+
+| No | Assumption                                                                                   |
+| -- | -------------------------------------------------------------------------------------------- |
+| 1  | Customer melakukan pemesanan melalui Guest Ordering tanpa registrasi akun.                   |
+| 2  | Owner merupakan pengguna utama aplikasi ERP Mobile.                                          |
+| 3  | Komunikasi tambahan antara owner dan customer dilakukan melalui WhatsApp apabila diperlukan. |
+| 4  | Pembayaran dilakukan secara langsung (cash atau transfer) dan dicatat oleh owner di ERP.     |
+| 5  | Setiap pesanan memiliki satu owner yang bertanggung jawab untuk memprosesnya.                |
+| 6  | ERP menjadi pusat penyimpanan data pesanan, inventori, dan status operasional.               |

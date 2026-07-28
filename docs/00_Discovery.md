@@ -108,7 +108,7 @@ Tabel berikut menjelaskan aktivitas utama yang dilakukan dalam proses bisnis UMK
 Diagram berikut menggambarkan proses bisnis UMKM makanan yang berjalan saat ini berdasarkan hasil observasi. Diagram ini menunjukkan alur aktivitas mulai dari pelanggan melakukan pemesanan hingga pesanan diterima pelanggan tanpa melibatkan sistem ERP.
 
 <p align="center">
-  <img src="../assets/diagrams/discovery/Current-Business-Process-Diagram.png" width="800">
+  <img src="../assets/diagrams/discovery/Current Business Process Diagram.png" width="800">
 </p>
 
 <p align="center">
