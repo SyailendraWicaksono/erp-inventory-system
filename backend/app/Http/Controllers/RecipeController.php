@@ -9,9 +9,7 @@ use Illuminate\Http\JsonResponse;
 
 class RecipeController extends Controller
 {
-    public function __construct(private readonly RecipeService $recipeService)
-    {
-    }
+    public function __construct(private readonly RecipeService $recipeService) {}
 
     public function index(int $productId): JsonResponse
     {

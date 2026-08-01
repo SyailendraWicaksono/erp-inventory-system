@@ -14,7 +14,9 @@ class RecipeServiceTest extends TestCase
     use RefreshDatabase;
 
     private Product $product;
+
     private RawMaterial $rawMaterial;
+
     private RecipeService $service;
 
     protected function setUp(): void
@@ -33,7 +35,7 @@ class RecipeServiceTest extends TestCase
             'unit' => 'gram',
         ]);
 
-        $this->service = new RecipeService();
+        $this->service = new RecipeService;
     }
 
     public function test_create_recipe_with_details(): void

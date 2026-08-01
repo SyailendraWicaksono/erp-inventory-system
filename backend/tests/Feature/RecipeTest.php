@@ -12,6 +12,7 @@ class RecipeTest extends TestCase
     use RefreshDatabase;
 
     private Product $product;
+
     private RawMaterial $rawMaterial;
 
     protected function setUp(): void
