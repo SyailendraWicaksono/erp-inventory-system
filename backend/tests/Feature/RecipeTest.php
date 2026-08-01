@@ -134,4 +134,11 @@ class RecipeTest extends TestCase
 
         $response->assertNotFound();
     }
+
+    public function test_index_on_nonexistent_product_returns_404(): void
+    {
+        $response = $this->getJson('/api/products/999999/recipes');
+
+        $response->assertNotFound();
+    }
 }

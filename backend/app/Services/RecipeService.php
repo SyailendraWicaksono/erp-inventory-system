@@ -11,6 +11,8 @@ class RecipeService
 {
     public function getAll(int $productId): Collection
     {
+        Product::findOrFail($productId);
+
         return Recipe::with('recipeDetails.rawMaterial')
             ->where('product_id', $productId)
             ->latest()
