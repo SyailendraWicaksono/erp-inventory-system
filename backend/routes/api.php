@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InventoryPurchaseController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RawMaterialController;
 use App\Http\Controllers\RecipeController;
@@ -7,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('products', ProductController::class);
 Route::apiResource('raw-materials', RawMaterialController::class);
+Route::apiResource('inventory-purchases', InventoryPurchaseController::class);
 
 Route::get('products/{productId}/recipes', [RecipeController::class, 'index']);
 Route::post('products/{productId}/recipes', [RecipeController::class, 'store']);
