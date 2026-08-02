@@ -1,21 +1,72 @@
-# Current status
+# ERP Inventory System – Session Context
 
-Completed modules:
+## Completed modules
+
 - Product
 - Recipe
-
-Next modules:
 - Raw Material
+
+## Session focus
+
 - Inventory
 
-Architecture:
-- Laravel API
-- PostgreSQL
-- Kotlin Compose
-- VPS deployment
+## Next modules
 
-Rules:
+- Purchase
+- Production
+- Order
+- Payment
+- Dashboard
+- Authentication
+- Android application
+
+---
+
+## Architecture
+
+- Backend: Laravel API
+- Database: PostgreSQL
+- Mobile application: Android Studio (Kotlin + Jetpack Compose)
+- Deployment: VPS
+
+---
+
+## Project structure
+
+ERP-INVENTORY-SYSTEM/
+├── backend
+├── docs
+├── frontend
+├── assets
+└── .opencode
+
+---
+
+## Development rules
+
 - Never modify migrations.
 - Never rename tables.
 - Never rename columns.
 - Keep controllers thin.
+- Always explain the implementation plan before modifying files.
+- Always ask for approval before modifying files.
+
+---
+
+## Workflow
+
+Brainstorming
+→ Design
+→ Planning
+→ Implementation
+→ Verification
+→ Review
+
+---
+
+## Notes
+
+- Use the Product module as a reference.
+- Use the Recipe module as a reference.
+- Use the Raw Material module as a reference.
+- Inventory is the next module.
