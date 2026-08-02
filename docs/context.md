@@ -5,6 +5,7 @@
 - Product
 - Recipe
 - Raw Material
+- Inventory
 
 ## Session focus
 
@@ -69,4 +70,4 @@ Brainstorming
 - Use the Product module as a reference.
 - Use the Recipe module as a reference.
 - Use the Raw Material module as a reference.
-- Inventory is the next module.
+- Use the Inventory module as a reference.
