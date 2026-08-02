@@ -14,7 +14,7 @@ class InventoryPurchaseRequestTest extends TestCase
 
     private function rules(): array
     {
-        return (new InventoryPurchaseRequest())->rules();
+        return (new InventoryPurchaseRequest)->rules();
     }
 
     public function test_valid_payload_passes(): void

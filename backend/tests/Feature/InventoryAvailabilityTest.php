@@ -45,7 +45,7 @@ class InventoryAvailabilityTest extends TestCase
     {
         RawMaterial::factory()->create(['stock_quantity' => 0]);
 
-        $statuses = (new InventoryAvailabilityService())->getStatus();
+        $statuses = (new InventoryAvailabilityService)->getStatus();
 
         $this->assertCount(1, $statuses);
         $this->assertSame('out_of_stock', $statuses->first()->status);

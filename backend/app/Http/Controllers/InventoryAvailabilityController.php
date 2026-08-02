@@ -8,9 +8,7 @@ use Illuminate\Http\JsonResponse;
 
 class InventoryAvailabilityController extends Controller
 {
-    public function __construct(private readonly InventoryAvailabilityService $inventoryAvailabilityService)
-    {
-    }
+    public function __construct(private readonly InventoryAvailabilityService $inventoryAvailabilityService) {}
 
     public function index(): JsonResponse
     {

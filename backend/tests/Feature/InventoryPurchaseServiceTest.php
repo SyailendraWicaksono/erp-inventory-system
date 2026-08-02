@@ -19,7 +19,7 @@ class InventoryPurchaseServiceTest extends TestCase
     {
         parent::setUp();
 
-        $this->service = new InventoryPurchaseService();
+        $this->service = new InventoryPurchaseService;
     }
 
     public function test_get_all_returns_all_purchases(): void
