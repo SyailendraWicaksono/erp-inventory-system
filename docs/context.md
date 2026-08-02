@@ -9,7 +9,7 @@
 
 ## Session focus
 
-- Inventory
+- Purchase
 
 ## Next modules
 
@@ -20,6 +20,15 @@
 - Dashboard
 - Authentication
 - Android application
+
+## Current status
+
+- Inventory module completed.
+- Inventory module passed review.
+- Availability endpoint implemented.
+- 82 tests passed.
+- 194 assertions passed.
+- Pint checks passed.
 
 ---
 
