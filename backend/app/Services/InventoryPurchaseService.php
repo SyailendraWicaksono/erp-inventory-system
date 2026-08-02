@@ -24,12 +24,13 @@ class InventoryPurchaseService
     {
         return DB::transaction(function () use ($data) {
             $data['purchase_date'] ??= now();
+            $data['quantity'] = round((float) $data['quantity'], 2);
 
             $rawMaterial = $this->lockRawMaterial((int) $data['raw_material_id']);
 
             $purchase = InventoryPurchase::create($data);
 
-            $this->setStock($rawMaterial, (float) $rawMaterial->stock_quantity + (float) $data['quantity']);
+            $this->setStock($rawMaterial, (float) $rawMaterial->stock_quantity + $data['quantity']);
 
             return $purchase->load('rawMaterial');
         });
@@ -38,7 +39,7 @@ class InventoryPurchaseService
     public function update(int $id, array $data): InventoryPurchase
     {
         return DB::transaction(function () use ($id, $data) {
-            $purchase = $this->getById($id);
+            $purchase = InventoryPurchase::whereKey($id)->lockForUpdate()->firstOrFail();
 
             $oldRawMaterial = $this->lockRawMaterial((int) $purchase->raw_material_id);
 
@@ -48,38 +49,47 @@ class InventoryPurchaseService
                 ? $oldRawMaterial
                 : $this->lockRawMaterial($newRawMaterialId);
 
-            $newQuantity = (float) ($data['quantity'] ?? $purchase->quantity);
+            if (array_key_exists('quantity', $data)) {
+                $data['quantity'] = round((float) $data['quantity'], 2);
+            }
+
+            $newQuantity = round((float) ($data['quantity'] ?? $purchase->quantity), 2);
             $oldQuantity = (float) $purchase->quantity;
 
             if ($sameMaterial) {
-                $oldProspective = round((float) $oldRawMaterial->stock_quantity + ($newQuantity - $oldQuantity), 2);
-                $newProspective = $oldProspective;
+                $prospective = round((float) $oldRawMaterial->stock_quantity + ($newQuantity - $oldQuantity), 2);
+
+                if ($prospective < 0) {
+                    throw ValidationException::withMessages([
+                        'quantity' => ['Stock cannot go below zero.'],
+                    ]);
+                }
+
+                $purchase->update($data);
+                $this->setStock($oldRawMaterial, $prospective);
             } else {
                 $oldProspective = round((float) $oldRawMaterial->stock_quantity - $oldQuantity, 2);
                 $newProspective = round((float) $newRawMaterial->stock_quantity + $newQuantity, 2);
-            }
 
-            if ($oldProspective < 0 || $newProspective < 0) {
-                throw ValidationException::withMessages([
-                    'quantity' => ['Stock cannot go below zero.'],
-                ]);
-            }
+                if ($oldProspective < 0 || $newProspective < 0) {
+                    throw ValidationException::withMessages([
+                        'quantity' => ['Stock cannot go below zero.'],
+                    ]);
+                }
 
-            $purchase->update($data);
-            $this->setStock($oldRawMaterial, $oldProspective);
-
-            if (! $sameMaterial) {
+                $purchase->update($data);
+                $this->setStock($oldRawMaterial, $oldProspective);
                 $this->setStock($newRawMaterial, $newProspective);
             }
 
-            return $this->getById($purchase->id);
+            return $purchase->refresh()->load('rawMaterial');
         });
     }
 
     public function delete(int $id): void
     {
         DB::transaction(function () use ($id) {
-            $purchase = $this->getById($id);
+            $purchase = InventoryPurchase::whereKey($id)->lockForUpdate()->firstOrFail();
             $rawMaterial = $this->lockRawMaterial((int) $purchase->raw_material_id);
 
             $prospective = round((float) $rawMaterial->stock_quantity - (float) $purchase->quantity, 2);
