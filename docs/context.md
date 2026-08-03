@@ -6,15 +6,14 @@
 - Recipe
 - Raw Material
 - Inventory
+- Production
 
 ## Session focus
 
-- Purchase
+- Production
 
 ## Next modules
 
-- Purchase
-- Production
 - Order
 - Payment
 - Dashboard
@@ -24,10 +23,11 @@
 ## Current status
 
 - Inventory module completed.
-- Inventory module passed review.
-- Availability endpoint implemented.
-- 82 tests passed.
-- 194 assertions passed.
+- Production module completed (replacing the deferred Purchase module).
+- Production module passed review.
+- Production scheduling (CRUD + start/finish lifecycle) implemented.
+- 135 tests passed.
+- 306 assertions passed.
 - Pint checks passed.
 
 ---
@@ -80,3 +80,4 @@ Brainstorming
 - Use the Recipe module as a reference.
 - Use the Raw Material module as a reference.
 - Use the Inventory module as a reference.
+- Use the Production module as a reference.
