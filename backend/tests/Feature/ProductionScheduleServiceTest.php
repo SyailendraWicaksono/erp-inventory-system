@@ -49,7 +49,7 @@ class ProductionScheduleServiceTest extends TestCase
 
         $order = Order::create([
             'customer_id' => Customer::factory()->create()->id,
-            'order_number' => 'ORD-' . fake()->unique()->numerify('#####'),
+            'order_number' => 'ORD-'.fake()->unique()->numerify('#####'),
             'pickup_datetime' => now()->addDay(),
             'order_status' => Order::ORDER_STATUS_CONFIRMED,
             'total_price' => 0,
@@ -267,7 +267,7 @@ class ProductionScheduleServiceTest extends TestCase
     {
         $order = Order::create([
             'customer_id' => Customer::factory()->create()->id,
-            'order_number' => 'ORD-' . fake()->unique()->numerify('#####'),
+            'order_number' => 'ORD-'.fake()->unique()->numerify('#####'),
             'pickup_datetime' => now()->addDay(),
             'order_status' => Order::ORDER_STATUS_CONFIRMED,
             'total_price' => 0,
@@ -289,7 +289,7 @@ class ProductionScheduleServiceTest extends TestCase
 
         $order = Order::create([
             'customer_id' => Customer::factory()->create()->id,
-            'order_number' => 'ORD-' . fake()->unique()->numerify('#####'),
+            'order_number' => 'ORD-'.fake()->unique()->numerify('#####'),
             'pickup_datetime' => now()->addDay(),
             'order_status' => Order::ORDER_STATUS_CONFIRMED,
             'total_price' => 0,
@@ -337,7 +337,7 @@ class ProductionScheduleServiceTest extends TestCase
 
         $order = Order::create([
             'customer_id' => Customer::factory()->create()->id,
-            'order_number' => 'ORD-' . fake()->unique()->numerify('#####'),
+            'order_number' => 'ORD-'.fake()->unique()->numerify('#####'),
             'pickup_datetime' => now()->addDay(),
             'order_status' => Order::ORDER_STATUS_CONFIRMED,
             'total_price' => 0,
@@ -443,12 +443,12 @@ class ProductionScheduleServiceTest extends TestCase
         $schedules = [];
         foreach (['Cake A', 'Cake B'] as $name) {
             $product = Product::create(['name' => $name, 'base_price' => 50000, 'is_active' => true]);
-            $recipe = $product->recipes()->create(['recipe_name' => $name . ' recipe']);
+            $recipe = $product->recipes()->create(['recipe_name' => $name.' recipe']);
             $recipe->recipeDetails()->create(['raw_material_id' => $material->id, 'quantity' => 60]);
 
             $order = Order::create([
                 'customer_id' => Customer::factory()->create()->id,
-                'order_number' => 'ORD-' . fake()->unique()->numerify('#####'),
+                'order_number' => 'ORD-'.fake()->unique()->numerify('#####'),
                 'pickup_datetime' => now()->addDay(),
                 'order_status' => Order::ORDER_STATUS_CONFIRMED,
                 'total_price' => 0,

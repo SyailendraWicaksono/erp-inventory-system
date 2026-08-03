@@ -35,7 +35,7 @@ class ProductionScheduleTest extends TestCase
 
         $order = Order::create([
             'customer_id' => Customer::factory()->create()->id,
-            'order_number' => 'ORD-' . fake()->unique()->numerify('#####'),
+            'order_number' => 'ORD-'.fake()->unique()->numerify('#####'),
             'pickup_datetime' => now()->addDay(),
             'order_status' => Order::ORDER_STATUS_CONFIRMED,
             'total_price' => 0,

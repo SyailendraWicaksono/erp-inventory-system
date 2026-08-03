@@ -133,7 +133,7 @@ class ProductionScheduleService
 
             if ($missingRecipes !== []) {
                 throw ValidationException::withMessages([
-                    'order_id' => ['Products have no recipe: ' . implode(', ', $missingRecipes)],
+                    'order_id' => ['Products have no recipe: '.implode(', ', $missingRecipes)],
                 ]);
             }
 
@@ -175,7 +175,7 @@ class ProductionScheduleService
 
             if ($missingRecipes !== []) {
                 throw ValidationException::withMessages([
-                    'order_id' => ['Products have no recipe: ' . implode(', ', $missingRecipes)],
+                    'order_id' => ['Products have no recipe: '.implode(', ', $missingRecipes)],
                 ]);
             }
 
@@ -209,6 +209,7 @@ class ProductionScheduleService
 
             if ($recipe === null) {
                 $missingRecipes[] = $item->product->name;
+
                 continue;
             }
 

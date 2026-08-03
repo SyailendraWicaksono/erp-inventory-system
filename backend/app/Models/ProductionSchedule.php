@@ -10,7 +10,9 @@ class ProductionSchedule extends Model
     use HasFactory;
 
     public const STATUS_SCHEDULED = 'scheduled';
+
     public const STATUS_IN_PROGRESS = 'in_progress';
+
     public const STATUS_FINISHED = 'finished';
 
     protected $fillable = [
