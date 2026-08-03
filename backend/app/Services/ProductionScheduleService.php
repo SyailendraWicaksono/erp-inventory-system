@@ -13,7 +13,7 @@ class ProductionScheduleService
 {
     public function getAll(): Collection
     {
-        return ProductionSchedule::with('order')->latest()->get();
+        return ProductionSchedule::with('order')->latest('id')->get();
     }
 
     public function getById(int $id): ProductionSchedule
