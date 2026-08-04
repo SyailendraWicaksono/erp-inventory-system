@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InventoryAvailabilityController;
 use App\Http\Controllers\InventoryPurchaseController;
 use App\Http\Controllers\OrderController;
@@ -31,3 +32,9 @@ Route::patch('orders/{order}/confirm', [OrderController::class, 'confirm']);
 
 Route::apiResource('payments', PaymentController::class);
 Route::patch('payments/{payment}/verify', [PaymentController::class, 'verify']);
+
+Route::get('dashboard', [DashboardController::class, 'index']);
+Route::get('dashboard/orders', [DashboardController::class, 'orders']);
+Route::get('dashboard/production', [DashboardController::class, 'production']);
+Route::get('dashboard/inventory', [DashboardController::class, 'inventory']);
+Route::get('dashboard/payments', [DashboardController::class, 'payments']);
