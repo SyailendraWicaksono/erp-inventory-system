@@ -7,15 +7,15 @@
 - Raw Material
 - Inventory
 - Production
+- Order
+- Payment
 
 ## Session focus
 
-- Production
+- Dashboard
 
 ## Next modules
 
-- Order
-- Payment
 - Dashboard
 - Authentication
 - Android application
@@ -23,12 +23,24 @@
 ## Current status
 
 - Inventory module completed.
-- Production module completed (replacing the deferred Purchase module).
-- Production module passed review.
-- Production scheduling (CRUD + start/finish lifecycle) implemented.
-- 135 tests passed.
-- 306 assertions passed.
+- Production module completed.
+- Order module completed.
+- Order CRUD implemented.
+- Order confirmation workflow implemented.
+- Order number generation implemented.
+- Server-side pricing implemented.
+- Payment module completed.
+- Payment recording and verification implemented.
+- Order completion (finished -> completed) implemented via payment verification.
+- 228 tests passed.
+- 543 assertions passed.
 - Pint checks passed.
+
+---
+
+## Latest commit
+
+- cbae701 feat: add payment controller and routes
 
 ---
 
@@ -81,3 +93,5 @@ Brainstorming
 - Use the Raw Material module as a reference.
 - Use the Inventory module as a reference.
 - Use the Production module as a reference.
+- Use the Order module as a reference.
+- Use the Payment module as a reference.
