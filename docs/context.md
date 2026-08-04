@@ -9,14 +9,14 @@
 - Production
 - Order
 - Payment
+- Dashboard
 
 ## Session focus
 
-- Dashboard
+- Authentication
 
 ## Next modules
 
-- Dashboard
 - Authentication
 - Android application
 
@@ -32,15 +32,17 @@
 - Payment module completed.
 - Payment recording and verification implemented.
 - Order completion (finished -> completed) implemented via payment verification.
-- 228 tests passed.
-- 543 assertions passed.
+- Dashboard module completed.
+- Daily operational summaries implemented (orders, production, inventory, payments).
+- 252 tests passed.
+- 643 assertions passed.
 - Pint checks passed.
 
 ---
 
 ## Latest commit
 
-- cbae701 feat: add payment controller and routes
+- b41c1c2 docs: use today for pickup_datetime fixtures in dashboard plan
 
 ---
 
@@ -95,3 +97,4 @@ Brainstorming
 - Use the Production module as a reference.
 - Use the Order module as a reference.
 - Use the Payment module as a reference.
+- Use the Dashboard module as a reference.
