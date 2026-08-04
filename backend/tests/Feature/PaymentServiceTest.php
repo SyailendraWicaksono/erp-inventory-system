@@ -165,6 +165,20 @@ class PaymentServiceTest extends TestCase
         $this->service->update($payment->id, ['payment_amount' => 1]);
     }
 
+    public function test_update_never_changes_order_id(): void
+    {
+        $order = $this->createOrder();
+        $otherOrder = $this->createOrder();
+        $payment = $this->service->create($this->payload($order));
+
+        $updated = $this->service->update($payment->id, [
+            'payment_method' => 'transfer',
+            'order_id' => $otherOrder->id,
+        ]);
+
+        $this->assertSame($payment->order_id, $updated->order_id);
+    }
+
     public function test_delete_removes_recorded_payment(): void
     {
         $order = $this->createOrder();

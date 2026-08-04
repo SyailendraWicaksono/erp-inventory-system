@@ -16,7 +16,7 @@ class PaymentRequest extends FormRequest
         $outer = $this->isMethod('PUT') ? 'sometimes' : 'required';
 
         return [
-            'order_id' => [$outer, 'integer', 'exists:orders,id'],
+            'order_id' => $this->isMethod('PUT') ? [] : ['required', 'integer', 'exists:orders,id'],
             'payment_method' => [$outer, 'string', 'max:255'],
             'payment_amount' => [$outer, 'numeric', 'gt:0'],
             'payment_date' => ['nullable', 'date'],
