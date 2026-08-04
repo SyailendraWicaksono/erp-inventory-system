@@ -131,7 +131,7 @@ class DashboardServiceTest extends TestCase
 
     public function test_production_summary_uses_order_pickup_datetime(): void
     {
-        $todayOrder = $this->createOrder(['pickup_datetime' => now()->addHours(2)]);
+        $todayOrder = $this->createOrder(['pickup_datetime' => today()->addHours(2)]);
         $tomorrowOrder = $this->createOrder(['pickup_datetime' => now()->addDay()]);
         $this->createSchedule($todayOrder);
         $this->createSchedule($tomorrowOrder);
@@ -143,9 +143,9 @@ class DashboardServiceTest extends TestCase
 
     public function test_production_summary_breaks_down_by_status(): void
     {
-        $scheduled = $this->createOrder(['pickup_datetime' => now()->addHours(2)]);
-        $inProgress = $this->createOrder(['pickup_datetime' => now()->addHours(2)]);
-        $finished = $this->createOrder(['pickup_datetime' => now()->addHours(2)]);
+        $scheduled = $this->createOrder(['pickup_datetime' => today()->addHours(2)]);
+        $inProgress = $this->createOrder(['pickup_datetime' => today()->addHours(2)]);
+        $finished = $this->createOrder(['pickup_datetime' => today()->addHours(2)]);
         $this->createSchedule($scheduled, ['production_status' => ProductionSchedule::STATUS_SCHEDULED]);
         $this->createSchedule($inProgress, ['production_status' => ProductionSchedule::STATUS_IN_PROGRESS]);
         $this->createSchedule($finished, ['production_status' => ProductionSchedule::STATUS_FINISHED]);
@@ -162,8 +162,8 @@ class DashboardServiceTest extends TestCase
 
     public function test_production_summary_active_schedules_exclude_finished(): void
     {
-        $scheduledOrder = $this->createOrder(['pickup_datetime' => now()->addHours(2)]);
-        $finishedOrder = $this->createOrder(['pickup_datetime' => now()->addHours(2)]);
+        $scheduledOrder = $this->createOrder(['pickup_datetime' => today()->addHours(2)]);
+        $finishedOrder = $this->createOrder(['pickup_datetime' => today()->addHours(2)]);
         $this->createSchedule($scheduledOrder, ['production_status' => ProductionSchedule::STATUS_SCHEDULED]);
         $this->createSchedule($finishedOrder, ['production_status' => ProductionSchedule::STATUS_FINISHED]);
 
