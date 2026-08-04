@@ -106,6 +106,7 @@ class DashboardTest extends TestCase
         $this->getJson('/api/dashboard/payments')
             ->assertOk()
             ->assertJsonPath('success', true)
-            ->assertJsonStructure(['data' => ['paid_total_today', 'outstanding_total', 'by_status', 'recorded_today']]);
+            ->assertJsonStructure(['data' => ['paid_total_today', 'outstanding_total', 'by_status', 'recorded_today']])
+            ->assertJsonPath('data.outstanding_total', 100000);
     }
 }
