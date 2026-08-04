@@ -9,6 +9,7 @@ use App\Http\Resources\DashboardProductionResource;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\ProductionSchedule;
 use App\Models\RawMaterial;
 use App\Services\DashboardService;
 use App\Services\InventoryAvailabilityService;
@@ -54,6 +55,7 @@ class DashboardResourceTest extends TestCase
         $this->assertArrayHasKey('order_number', $resource['active_orders'][0]);
         $this->assertArrayHasKey('customer', $resource['active_orders'][0]);
         $this->assertArrayHasKey('name', $resource['active_orders'][0]['customer']);
+        $this->assertIsFloat($resource['active_orders'][0]['total_price']);
     }
 
     public function test_production_resource_has_expected_shape(): void
@@ -62,7 +64,7 @@ class DashboardResourceTest extends TestCase
         $order->productionSchedule()->create([
             'start_time' => now(),
             'end_time' => now()->addHour(),
-            'production_status' => 'scheduled',
+            'production_status' => ProductionSchedule::STATUS_SCHEDULED,
         ]);
 
         $resource = (new DashboardProductionResource($this->service->getProductionSummary()))->resolve();
@@ -90,6 +92,7 @@ class DashboardResourceTest extends TestCase
         $this->assertCount(1, $resource['at_risk']);
         $this->assertArrayHasKey('name', $resource['at_risk'][0]);
         $this->assertArrayHasKey('status', $resource['at_risk'][0]);
+        $this->assertIsFloat($resource['at_risk'][0]['stock_quantity']);
     }
 
     public function test_payment_resource_has_expected_shape(): void
@@ -112,5 +115,7 @@ class DashboardResourceTest extends TestCase
         $this->assertCount(1, $resource['recorded_today']);
         $this->assertArrayHasKey('order_number', $resource['recorded_today'][0]);
         $this->assertArrayHasKey('payment_amount', $resource['recorded_today'][0]);
+        $this->assertIsFloat($resource['recorded_today'][0]['payment_amount']);
+        $this->assertSame(100000.0, $resource['outstanding_total']);
     }
 }
