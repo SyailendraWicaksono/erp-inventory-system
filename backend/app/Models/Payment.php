@@ -9,6 +9,10 @@ class Payment extends Model
 {
     use HasFactory;
 
+    public const PAYMENT_STATUS_RECORDED = 'recorded';
+
+    public const PAYMENT_STATUS_PAID = 'paid';
+
     protected $fillable = [
         'order_id',
         'payment_method',
