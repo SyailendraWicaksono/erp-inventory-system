@@ -66,6 +66,7 @@ use App\Models\RawMaterial;
 use App\Services\DashboardService;
 use App\Services\InventoryAvailabilityService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class DashboardServiceTest extends TestCase
@@ -83,14 +84,19 @@ class DashboardServiceTest extends TestCase
 
     private function createOrder(array $overrides = []): Order
     {
-        return Order::create(array_merge([
+        $order = Order::create([
             'customer_id' => Customer::factory()->create()->id,
             'order_number' => 'ORD-'.fake()->unique()->numerify('#####'),
-            'pickup_datetime' => now()->addDay(),
-            'order_status' => Order::ORDER_STATUS_PENDING,
-            'total_price' => 100000,
-            'created_at' => now(),
-        ], $overrides));
+            'pickup_datetime' => $overrides['pickup_datetime'] ?? now()->addDay(),
+            'order_status' => $overrides['order_status'] ?? Order::ORDER_STATUS_PENDING,
+            'total_price' => $overrides['total_price'] ?? 100000,
+        ]);
+
+        if (array_key_exists('created_at', $overrides)) {
+            DB::table('orders')->where('id', $order->id)->update(['created_at' => $overrides['created_at']]);
+        }
+
+        return $order->refresh();
     }
 
     private function createSchedule(Order $order, array $overrides = []): ProductionSchedule
@@ -105,15 +111,25 @@ class DashboardServiceTest extends TestCase
 
     private function createPayment(Order $order, array $overrides = []): Payment
     {
-        return Payment::create(array_merge([
+        $payment = Payment::create([
             'order_id' => $order->id,
             'payment_method' => 'cash',
-            'payment_status' => Payment::PAYMENT_STATUS_RECORDED,
-            'payment_amount' => 100000,
-            'payment_date' => now(),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ], $overrides));
+            'payment_status' => $overrides['payment_status'] ?? Payment::PAYMENT_STATUS_RECORDED,
+            'payment_amount' => $overrides['payment_amount'] ?? 100000,
+            'payment_date' => $overrides['payment_date'] ?? now(),
+        ]);
+
+        $timestamps = [];
+        foreach (['created_at', 'updated_at'] as $timestamp) {
+            if (array_key_exists($timestamp, $overrides)) {
+                $timestamps[$timestamp] = $overrides[$timestamp];
+            }
+        }
+        if ($timestamps) {
+            DB::table('payments')->where('id', $payment->id)->update($timestamps);
+        }
+
+        return $payment->refresh();
     }
 
     public function test_orders_summary_counts_only_today_orders(): void
