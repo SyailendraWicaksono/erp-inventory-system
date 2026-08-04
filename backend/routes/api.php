@@ -3,6 +3,7 @@
 use App\Http\Controllers\InventoryAvailabilityController;
 use App\Http\Controllers\InventoryPurchaseController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductionScheduleController;
 use App\Http\Controllers\RawMaterialController;
@@ -27,3 +28,6 @@ Route::patch('production-schedules/{production_schedule}/finish', [ProductionSch
 
 Route::apiResource('orders', OrderController::class);
 Route::patch('orders/{order}/confirm', [OrderController::class, 'confirm']);
+
+Route::apiResource('payments', PaymentController::class);
+Route::patch('payments/{payment}/verify', [PaymentController::class, 'verify']);
