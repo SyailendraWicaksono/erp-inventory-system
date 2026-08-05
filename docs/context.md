@@ -10,14 +10,14 @@
 - Order
 - Payment
 - Dashboard
+- Authentication
 
 ## Session focus
 
-- Authentication
+- Android application
 
 ## Next modules
 
-- Authentication
 - Android application
 
 ## Current status
@@ -34,15 +34,21 @@
 - Order completion (finished -> completed) implemented via payment verification.
 - Dashboard module completed.
 - Daily operational summaries implemented (orders, production, inventory, payments).
-- 252 tests passed.
-- 643 assertions passed.
+- Authentication module completed.
+- Owner authentication via Laravel Sanctum personal access tokens implemented.
+- Login, logout, and current-user endpoints implemented.
+- Owner routes protected with auth:sanctum; guest ordering (products, create order) stays public.
+- Login rate-limited (5 attempts/min); tokens long-lived and revoked on logout.
+- Default owner seeded via OwnerSeeder (OWNER_EMAIL / OWNER_PASSWORD env).
+- 275 tests passed.
+- 688 assertions passed.
 - Pint checks passed.
 
 ---
 
 ## Latest commit
 
-- b41c1c2 docs: use today for pickup_datetime fixtures in dashboard plan
+- d2422e5 feat: add authentication module with Sanctum
 
 ---
 
@@ -98,3 +104,4 @@ Brainstorming
 - Use the Order module as a reference.
 - Use the Payment module as a reference.
 - Use the Dashboard module as a reference.
+- Use the Authentication module as a reference.
