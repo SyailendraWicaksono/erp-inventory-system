@@ -5,11 +5,12 @@ namespace Tests\Feature;
 use App\Models\Product;
 use App\Models\RawMaterial;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Concerns\AuthenticatesOwner;
 use Tests\TestCase;
 
 class RecipeTest extends TestCase
 {
-    use RefreshDatabase;
+    use AuthenticatesOwner, RefreshDatabase;
 
     private Product $product;
 
@@ -18,6 +19,8 @@ class RecipeTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+
+        $this->authenticateOwner();
 
         $this->product = Product::create([
             'name' => 'Chocolate Cake',

@@ -5,11 +5,19 @@ namespace Tests\Feature;
 use App\Models\InventoryPurchase;
 use App\Models\RawMaterial;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Concerns\AuthenticatesOwner;
 use Tests\TestCase;
 
 class InventoryPurchaseTest extends TestCase
 {
-    use RefreshDatabase;
+    use AuthenticatesOwner, RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->authenticateOwner();
+    }
 
     public function test_index_returns_purchase_list(): void
     {

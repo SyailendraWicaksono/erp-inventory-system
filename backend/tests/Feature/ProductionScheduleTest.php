@@ -7,11 +7,19 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\RawMaterial;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Concerns\AuthenticatesOwner;
 use Tests\TestCase;
 
 class ProductionScheduleTest extends TestCase
 {
-    use RefreshDatabase;
+    use AuthenticatesOwner, RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->authenticateOwner();
+    }
 
     private function createOrderWithRecipe(int $itemQuantity = 1, float $materialStock = 100, float $recipeQuantity = 1): array
     {

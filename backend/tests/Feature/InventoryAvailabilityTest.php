@@ -6,11 +6,19 @@ use App\Http\Resources\InventoryAvailabilityResource;
 use App\Models\RawMaterial;
 use App\Services\InventoryAvailabilityService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Concerns\AuthenticatesOwner;
 use Tests\TestCase;
 
 class InventoryAvailabilityTest extends TestCase
 {
-    use RefreshDatabase;
+    use AuthenticatesOwner, RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->authenticateOwner();
+    }
 
     public function test_endpoint_returns_availability_for_all_raw_materials(): void
     {

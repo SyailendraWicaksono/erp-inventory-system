@@ -6,11 +6,12 @@ use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Concerns\AuthenticatesOwner;
 use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
-    use RefreshDatabase;
+    use AuthenticatesOwner, RefreshDatabase;
 
     private function createProduct(string $name = 'Chocolate Cake', bool $isActive = true): Product
     {
@@ -53,6 +54,8 @@ class OrderTest extends TestCase
 
     public function test_index_returns_orders_latest_first_with_nested_data(): void
     {
+        $this->authenticateOwner();
+
         $first = $this->postJson('/api/orders', $this->validPayload())->json('data');
         $second = $this->postJson('/api/orders', $this->validPayload())->json('data');
 
@@ -94,6 +97,8 @@ class OrderTest extends TestCase
 
     public function test_show_returns_order(): void
     {
+        $this->authenticateOwner();
+
         $order = $this->postJson('/api/orders', $this->validPayload())->json('data');
 
         $response = $this->getJson("/api/orders/{$order['id']}");
@@ -103,11 +108,15 @@ class OrderTest extends TestCase
 
     public function test_show_missing_order_returns_404(): void
     {
+        $this->authenticateOwner();
+
         $this->getJson('/api/orders/999999')->assertNotFound();
     }
 
     public function test_update_replaces_items_while_pending(): void
     {
+        $this->authenticateOwner();
+
         $order = $this->postJson('/api/orders', $this->validPayload())->json('data');
         $other = $this->createProduct('Red Velvet');
 
@@ -124,6 +133,8 @@ class OrderTest extends TestCase
 
     public function test_update_rejects_non_pending_order(): void
     {
+        $this->authenticateOwner();
+
         $order = $this->postJson('/api/orders', $this->validPayload())->json('data');
         $this->patchJson("/api/orders/{$order['id']}/confirm")->assertOk();
 
@@ -136,6 +147,8 @@ class OrderTest extends TestCase
 
     public function test_destroy_deletes_pending_order(): void
     {
+        $this->authenticateOwner();
+
         $order = $this->postJson('/api/orders', $this->validPayload())->json('data');
 
         $response = $this->deleteJson("/api/orders/{$order['id']}");
@@ -146,6 +159,8 @@ class OrderTest extends TestCase
 
     public function test_destroy_rejects_non_pending_order(): void
     {
+        $this->authenticateOwner();
+
         $order = $this->postJson('/api/orders', $this->validPayload())->json('data');
         $this->patchJson("/api/orders/{$order['id']}/confirm")->assertOk();
 
@@ -157,6 +172,8 @@ class OrderTest extends TestCase
 
     public function test_confirm_confirms_order(): void
     {
+        $this->authenticateOwner();
+
         $order = $this->postJson('/api/orders', $this->validPayload())->json('data');
 
         $response = $this->patchJson("/api/orders/{$order['id']}/confirm");
@@ -169,6 +186,8 @@ class OrderTest extends TestCase
 
     public function test_confirm_rejects_duplicate_confirm(): void
     {
+        $this->authenticateOwner();
+
         $order = $this->postJson('/api/orders', $this->validPayload())->json('data');
         $this->patchJson("/api/orders/{$order['id']}/confirm")->assertOk();
 
@@ -179,6 +198,8 @@ class OrderTest extends TestCase
 
     public function test_order_resource_includes_production_schedule_when_present(): void
     {
+        $this->authenticateOwner();
+
         $order = $this->postJson('/api/orders', $this->validPayload())->json('data');
         $this->patchJson("/api/orders/{$order['id']}/confirm")->assertOk();
         $this->postJson('/api/production-schedules', ['order_id' => $order['id']])->assertCreated();

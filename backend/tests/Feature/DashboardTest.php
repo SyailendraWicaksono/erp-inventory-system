@@ -7,11 +7,19 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Models\RawMaterial;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Concerns\AuthenticatesOwner;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
 {
-    use RefreshDatabase;
+    use AuthenticatesOwner, RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->authenticateOwner();
+    }
 
     private function createOrder(): Order
     {

@@ -5,11 +5,19 @@ namespace Tests\Feature;
 use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Feature\Concerns\AuthenticatesOwner;
 use Tests\TestCase;
 
 class PaymentTest extends TestCase
 {
-    use RefreshDatabase;
+    use AuthenticatesOwner, RefreshDatabase;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->authenticateOwner();
+    }
 
     private function createOrder(string $status = Order::ORDER_STATUS_CONFIRMED, float $total = 100000): Order
     {
